@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import os
+import os, json
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
-    'orders.apps.OrdersConfig'
+    'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig'
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,21 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 CART_SESSION_ID = 'cart'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Braintree settings
+keydir = os.path.dirname(BASE_DIR)
+keyfile = os.path.join(keydir, 'secrets.json')
+with open(keyfile) as f:
+    secrets = json.load(f)
+    BRAINTREE_MERCHANT_ID =  secrets['braintree_merchant_id_lwj1']  # Merchant ID
+    BRAINTREE_PUBLIC_KEY = secrets['braintree_public_key_lwj1']     # Public Key
+    BRAINTREE_PRIVATE_KEY = secrets['braintree_private_key_lwj1']   # Private key
+    del secrets
+
+import braintree
+BRAINTREE_CONF = braintree.Configuration(
+    braintree.Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)
