@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
     'payment.apps.PaymentConfig',
+    'rosetta', # Did not work if below coupons.apps.CouponsConfig
     'coupons.apps.CouponsConfig'
 ]
 
