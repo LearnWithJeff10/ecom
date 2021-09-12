@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     'payment.apps.PaymentConfig',
     'rosetta', # Did not work if below coupons.apps.CouponsConfig
+    'parler',
     'coupons.apps.CouponsConfig'
 ]
 
@@ -120,6 +121,16 @@ LANGUAGES = (
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale/'),
 )
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'en'},
+        {'code': 'es'}
+    ),
+    'default': {
+        'fallback': 'en',
+        'hide_untranslated': False
+    }
+}
 
 TIME_ZONE = 'UTC'
 
