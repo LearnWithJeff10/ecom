@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'payment.apps.PaymentConfig',
     'rosetta', # Did not work if below coupons.apps.CouponsConfig
     'parler',
+    'localflavor',
     'coupons.apps.CouponsConfig'
 ]
 
