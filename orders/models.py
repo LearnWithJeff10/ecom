@@ -25,6 +25,7 @@ class Order(models.Model):
     discount = models.IntegerField(default=0,
                                    validators=[MinValueValidator(0),
                                                MaxValueValidator(100)])
+    braintree_id = models.CharField(max_length=150, blank=True)
 
     class Meta:
         ordering = ('-created',)
@@ -46,7 +47,6 @@ class OrderItem(models.Model):
                                 on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField(default=1)
-    braintree_id = models.CharField(max_length=150, blank=True)
 
     def __str__(self):
         return str(self.id)

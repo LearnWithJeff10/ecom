@@ -21,3 +21,10 @@ Optionally, to monitor Celery install and run Flower.
   install:  pip install flower==0.9.3
   run:      celery -A myshop flower
   view:     http://localhost:5555/dashboard
+
+Redis is required for recommendation engine
+  For installation, see: https://phoenixnap.com/kb/docker-redis
+  To run:
+      Docker image worked, but actual IP must be used (not localhost or 127.0.0.1):
+      docker run --name myredis -p 6379:6379 -d redis
+      docker run -it --rm redis redis-cli -h 192.168.2.130 -p 6379
