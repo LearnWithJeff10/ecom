@@ -177,3 +177,7 @@ BRAINTREE_CONF = braintree.Configuration(
 REDIS_HOST = '192.168.2.130'
 REDIS_PORT = 6379
 REDIS_DB = 1
+
+# Heroku from django.conf import settings
+import django_heroku
+django_keroku.settings(locals())
